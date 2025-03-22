@@ -1,0 +1,27 @@
+body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: aliceblue;
+    color:brown
+}
+
+h1{
+    text-align: center;
+    color: #000;
+}
+
+.score{
+    display: flex;
+    justify-content:flex-start;
+    gap: 20px;
+    font-weight: bolder;
+    font-size: larger;
+}
+
+button{
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
