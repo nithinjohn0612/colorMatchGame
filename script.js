@@ -24,3 +24,17 @@ const colourToString = ({r,g,b}) =>{
 const getColourDifference = (targetColour,playerColour) =>{
     return Math.abs(targetColour.r - playerColour.r) + Math.abs(targetColour.g - playerColour.g) + Math.abs(targetColour.b - playerColour.b)
 }
+//getting the initial state
+const initialState = createIntialState()
+
+//updating the player's colour
+const updatePlayerColour = (state,channel,value) =>{
+    return {
+        ...state,
+        playerColour:{
+            ...state.playerColour,
+            [channel]:Number(value)
+        }
+        
+    }
+}
