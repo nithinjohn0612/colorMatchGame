@@ -49,10 +49,30 @@ const updateScore = (state) =>{
     }
 }
 //start a new game
-const newGame = () =>{
+const newGame = (state) =>{
     return {
-        ...initialState,
+        ...state,
         targetColour:generateRandomColour(),
-        gameOver:false
+        gameOver:false,
+        score:0,
+        playerColour:{
+            r:0,
+            g:0,
+            b:0
+        }
     }
 }
+
+//ui update
+const updateUI = (state) =>{
+    document.getElementById('target-colour').style.backgroundColor = colourToString(state.targetColour)
+    document.getElementById('player-colour').style.backgroundColor = colourToString(state.playerColour)
+}
+
+//updating sliding bar
+const updateSlider = (state) =>{
+    document.getElementById('red').value = state.playerColour.r
+    document.getElementById('green').value = state.playerColour.g
+    document.getElementById('blue').value = state.playerColour.b
+}
+//updating the score
