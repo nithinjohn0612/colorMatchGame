@@ -38,3 +38,21 @@ const updatePlayerColour = (state,channel,value) =>{
         
     }
 }
+
+//updating the score
+const updateScore = (state) =>{
+    const colourDifference = getColourDifference(state.targetColour,state.playerColour)
+    const score = 100 - colourDifference
+    return {
+        ...state,
+        score:score
+    }
+}
+//start a new game
+const newGame = () =>{
+    return {
+        ...initialState,
+        targetColour:generateRandomColour(),
+        gameOver:false
+    }
+}
