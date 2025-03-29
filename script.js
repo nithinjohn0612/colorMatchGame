@@ -15,3 +15,12 @@ const generateRandomColour = () =>{
     }
 }
 console.log(generateRandomColour())
+
+//coverting the colour object to a string
+const colourToString = ({r,g,b}) =>{
+    return `rgb(${r},${g},${b})`
+}
+//getting the colour difference
+const getColourDifference = (targetColour,playerColour) =>{
+    return Math.abs(targetColour.r - playerColour.r) + Math.abs(targetColour.g - playerColour.g) + Math.abs(targetColour.b - playerColour.b)
+}
