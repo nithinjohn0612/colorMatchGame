@@ -7,17 +7,72 @@ body{
     color:brown
 }
 
-h1{
-    text-align: center;
-    color: #000;
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.score{
+h1{
+    text-align: center;
+    
+}
+
+.colour-display{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    gap: 120px;
+}
+
+.colour-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+    width: 20px;
+    border-radius: 10px;
+    
+    
+}
+
+.colour-label{
+    background-color: rgb(135, 135, 139);
+    padding: 30px 30px;
+    border-radius: 30px;
+    margin-top: 5px;
+    font-weight: bold;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    
+}
+
+.controls{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.slider-group{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.game-stat{
     display: flex;
     justify-content:flex-start;
-    gap: 20px;
-    font-weight: bolder;
-    font-size: larger;
+    gap: 10px;
+    font-weight:900;
+    font-size:xx-large;
 }
 
 button{
