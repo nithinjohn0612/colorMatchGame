@@ -1,11 +1,3 @@
-//intial state
-const createIntialState = () => ({
-  targetColour: a_function(),
-  playerColour: { r: 0, g: 0, b: 0 },
-  score: 0,
-  gameOver: false,
-});
-
 //generating a random colour as the target
 const generateRandomColour = () => {
   return {
@@ -22,12 +14,23 @@ const colourToString = ({ r, g, b }) => {
 };
 //getting the colour difference
 const getColourDifference = (targetColour, playerColour) => {
-  return (
-    Math.abs(targetColour.r - playerColour.r) +
-    Math.abs(targetColour.g - playerColour.g) +
-    Math.abs(targetColour.b - playerColour.b)
+  const rdiff = Math.abs(targetColour.r - playerColour.r);
+  const gdiff = Math.abs(targetColour.g - playerColour.g);
+  const bdiff = Math.abs(targetColour.b - playerColour.b);
+
+  //some math formula to get the colour difference
+  const formulaInMath = Math.sqrt(
+    rdiff * rdiff + gdiff * gdiff + bdiff * bdiff
   );
+  return Math.max(0, Math.floor(100 - (formulaInMath / 441.67) * 100));
 };
+//intial state
+const createIntialState = () => ({
+  targetColour: generateRandomColour(),
+  playerColour: { r: 0, g: 0, b: 0 },
+  score: 0,
+  gameOver: false,
+});
 //getting the initial state
 const initialState = createIntialState();
 
@@ -42,18 +45,20 @@ const updatePlayerColour = (state, channel, value) => {
   };
 };
 
-//updating the score
+//submit
 const updateScore = (state) => {
   const colourDifference = getColourDifference(
     state.targetColour,
     state.playerColour
   );
-  const score = 100 - colourDifference;
+
   return {
     ...state,
-    score: score,
+    score,
+    gameOver: score >= 90,
   };
 };
+
 //start a new game
 const newGame = (state) => {
   return {
@@ -71,28 +76,28 @@ const newGame = (state) => {
 
 //ui update
 const updateUI = (state) => {
-  document.getElementById("target-colour").style.backgroundColor =
+  document.getElementById("targetColourDisplay").style.backgroundColor =
     colourToString(state.targetColour);
-  document.getElementById("player-colour").style.backgroundColor =
+  document.getElementById("playerColourDisplay").style.backgroundColor =
     colourToString(state.playerColour);
 };
 
 //updating sliding bar
-const updateSlider = (state) => {
-  document.getElementById("red").value = state.playerColour.r;
-  document.getElementById("green").value = state.playerColour.g;
-  document.getElementById("blue").value = state.playerColour.b;
-};
+
+  document.getElementById("redSlider").value = state.playerColour.r;
+  document.getElementById("greenSlider").value = state.playerColour.g;
+  document.getElementById("blueSlider").value = state.playerColour.b;
+
 //updating the text value
 
-document.getElementById("red-value").textContent = state.playerColour.r;
-document.getElementById("green-value").textContent = state.playerColour.g;
-document.getElementById("blue-value").textContent = state.playerColour.b;
+document.getElementById("redValue").textContent = state.playerColour.r;
+document.getElementById("greenValue").textContent = state.playerColour.g;
+document.getElementById("blueValue").textContent = state.playerColour.b;
 
 if (state.gameOver) {
   document.getElementById("message").textContent =
     "Congrats! you won with a match of 90%!";
-  document.getElementById("Submit").disabled = true;
+  document.getElementById("submit").disabled = true;
   document.getElementById("newGame").style.display = "block";
   document.getElementById(
     "targetColour"
@@ -100,7 +105,7 @@ if (state.gameOver) {
 } else {
   document.getElementById("message").textContent =
     "Try to match the target colour!";
-  document.getElementById("Submit").disabled = false;
+  document.getElementById("submit").disabled = false;
   document.getElementById("newGame").style.display = "none";
 }
 
@@ -108,22 +113,22 @@ document.addEventListener("DOMContentLoaded", () => {
   let gameState = initialState;
   updateUI(gameState);
 
-  document.getElementById("red").addEventListener("input", (e) => {
+  document.getElementById("redSlider").addEventListener("input", (e) => {
     gameState = updatePlayerColour(gameState, "r", e.target.value);
     gameState = updateScore(gameState);
     updateUI(gameState);
     updateSlider(gameState);
   });
-  document.getElementById("green").addEventListener("input", (e) => {
+  document.getElementById("greenSlider").addEventListener("input", (e) => {
     gameState = updatePlayerColour(gameState, "g", e.target.value);
 
     updateUI(gameState);
   });
-  document.getElementById("blue").addEventListener("input", (e) => {
+  document.getElementById("blueSlider").addEventListener("input", (e) => {
     gameState = updatePlayerColour(gameState, "b", e.target.value);
     updateUI(gameState);
   });
-  document.getElementById("Submit").addEventListener("click", () => {
+  document.getElementById("submit").addEventListener("click", () => {
     gameState = updateScore(gameState);
     if (gameState.score >= 90) {
       gameState.gameOver = true;
