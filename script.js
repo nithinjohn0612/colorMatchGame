@@ -75,4 +75,19 @@ const updateSlider = (state) =>{
     document.getElementById('green').value = state.playerColour.g
     document.getElementById('blue').value = state.playerColour.b
 }
-//updating the score
+//updating the text value
+
+    document.getElementById('red-value').textContent = state.playerColour.r
+    document.getElementById('green-value').textContent = state.playerColour.g
+    document.getElementById('blue-value').textContent = state.playerColour.b
+
+    if(state.gameOver){
+        document.getElementById('message').textContent = 'Congrats! you won with a match of 90%!'
+        document.getElementById('Submit').disabled = true
+        document.getElementById('newGame').style.display = 'block'
+        document.getElementById('targetColour').textContent = `Target Colour: R:${state.targetColour.r} G:${state.targetColour.g} B:${state.targetColour.b}`
+    }else{
+        document.getElementById('message').textContent = 'Try to match the target colour!'
+        document.getElementById('Submit').disabled = false
+        document.getElementById('newGame').style.display = 'none'
+    }
