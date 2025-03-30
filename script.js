@@ -46,8 +46,8 @@ const updatePlayerColour = (state, channel, value) => {
 };
 
 //submit
-const updateScore = (state) => {
-  const colourDifference = getColourDifference(
+const submitGuess = (state) => {
+  const score = getColourDifference(
     state.targetColour,
     state.playerColour
   );
@@ -115,9 +115,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("redSlider").addEventListener("input", (e) => {
     gameState = updatePlayerColour(gameState, "r", e.target.value);
-    gameState = updateScore(gameState);
+   
     updateUI(gameState);
-    updateSlider(gameState);
+   
   });
   document.getElementById("greenSlider").addEventListener("input", (e) => {
     gameState = updatePlayerColour(gameState, "g", e.target.value);
@@ -129,10 +129,8 @@ document.addEventListener("DOMContentLoaded", () => {
     updateUI(gameState);
   });
   document.getElementById("submit").addEventListener("click", () => {
-    gameState = updateScore(gameState);
-    if (gameState.score >= 90) {
-      gameState.gameOver = true;
-    }
+    gameState = submitGuess(gameState);
+    
     updateUI(gameState);
   });
   document.getElementById("newGame").addEventListener("click", () => {
