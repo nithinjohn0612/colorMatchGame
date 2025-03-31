@@ -63,7 +63,7 @@ h1{
     font-size:xx-large;
 }
 #message{
-    font-size: 50px;
+    font-size: 30px;
     font-weight: bold;
     text-align: center;
     margin-top: 10px;
@@ -76,4 +76,4 @@ h1{
     font-weight: bold;
     transition: background-color 0.3s;
     cursor: pointer;
-}
+    

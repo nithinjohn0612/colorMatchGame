@@ -1,4 +1,4 @@
-//generating a random colour as the target
+//generating a random colour as the target colour
 const generateRandomColour = () => {
   return {
     r: Math.floor(Math.random() * 256),
@@ -18,7 +18,7 @@ const getColourDifference = (playerColour,targetColour) => {
   const gdiff = Math.abs(playerColour.g - targetColour.g);
   const bdiff = Math.abs(playerColour.b - targetColour.b);
 
-  //some math formula to get the colour difference
+  //some math formula to calculate the colour difference
   const formulaInMath = Math.sqrt(
     rdiff * rdiff + gdiff * gdiff + bdiff * bdiff
   );
