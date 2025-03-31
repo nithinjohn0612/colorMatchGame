@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    
     <title>Colour Matching Game</title>
   </head>
   <body>
@@ -27,41 +26,42 @@
         </p>
       </div>
 
-      <div class="colour-display">
+      <div class="colour-displays">
         <div>
           <div class="colour-box" id="targetColour"></div>
-          <p class="colour-label">Target Colour</p>
+          <p >Target Colour</p>
         </div>
         <div>
           <div class="colour-box" id="playerColour"></div>
-          <p class="colour-label">Your Colour</p>
+          <p >Your Colour</p>
         </div>
       </div>
       <div id="targetRGB"></div>
       <div class="controls">
         <div class="slider-group">
           <span class="slider-label" style="color: red">Red:</span>
-          <input type="range" id="redSlider" min="0" max="255" value="1" />
-          <span class="slider-value" id="redValue">1</span>
+          <input type="range" id="redSlider" min="0" max="255" value="255" />
+          <span class="slider-value" id="redValue">255</span>
         </div>
        
 
         <div class="slider-group">
           <span class="slider-label" style="color: green">Green:</span>
-          <input type="range" id="greenSlider" min="0" max="255" value="1" />
-          <span class="slider-value" id="greenValue">1</span>
+          <input type="range" id="greenSlider" min="0" max="255" value="255" />
+          <span class="slider-value" id="greenValue">255</span>
         </div>
 
         <div class="slider-group">
           <span class="slider-label" style="color: blue">Blue:</span>
-          <input type="range" id="blueSlider" min="0" max="255" value="1" />
-          <span class="slider-value" id="blueValue">1</span>
+          <input type="range" id="blueSlider" min="0" max="255" value="255" />
+          <span class="slider-value" id="blueValue">255</span>
         </div>
       </div>
+      <div id="message">Adjust the rgb to amtch the colour</div>
 
       <div class="game-stat">
         <p>Your Score</p>
-        <div id="score" class="stat-value"><p>0</p></div>
+        <div id="score" class="stat-value"> <p>Your Score</p><p>0</p></div>    
       </div>
       <div class="buttons">
         <button id="submit">Submit</button>

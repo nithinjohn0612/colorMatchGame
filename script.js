@@ -6,17 +6,17 @@ const generateRandomColour = () => {
     b: Math.floor(Math.random() * 256),
   };
 };
-console.log(generateRandomColour());
+
 
 //coverting the colour object to a string
-const colourToString = ({ r, g, b }) => {
-  return `rgb(${r},${g},${b})`;
-};
+const colourToString = ({r, g, b}) => 
+  `rgb(${r},${g},${b})`;
+;
 //getting the colour difference
-const getColourDifference = (targetColour, playerColour) => {
-  const rdiff = Math.abs(targetColour.r - playerColour.r);
-  const gdiff = Math.abs(targetColour.g - playerColour.g);
-  const bdiff = Math.abs(targetColour.b - playerColour.b);
+const getColourDifference = (playerColour,targetColour) => {
+  const rdiff = Math.abs(playerColour.r - targetColour.r);
+  const gdiff = Math.abs(playerColour.g - targetColour.g);
+  const bdiff = Math.abs(playerColour.b - targetColour.b);
 
   //some math formula to get the colour difference
   const formulaInMath = Math.sqrt(
@@ -46,7 +46,7 @@ const updatePlayerColour = (state, channel, value) => {
 };
 
 //submit
-const submitGuess = (state) => {
+const submitGuess = state => {
   const score = getColourDifference(
     state.targetColour,
     state.playerColour
@@ -60,29 +60,27 @@ const submitGuess = (state) => {
 };
 
 //start a new game
-const newGame = (state) => {
+const newGame = state => {
   return {
     ...state,
     targetColour: generateRandomColour(),
-    gameOver: false,
     score: 0,
     playerColour: {
-      r: 0,
-      g: 0,
-      b: 0,
+      r: 128,
+      g: 128,
+      b: 128,
     },
+    gameOver: false,
   };
 };
 
 //ui update
-const updateUI = (state) => {
-  document.getElementById("targetColourDisplay").style.backgroundColor =
+const updateUI = state => {
+  document.getElementById("targetColour").style.backgroundColor =
     colourToString(state.targetColour);
-  document.getElementById("playerColourDisplay").style.backgroundColor =
+  document.getElementById("playerColour").style.backgroundColor =
     colourToString(state.playerColour);
-};
 
-//updating sliding bar
 
   document.getElementById("redSlider").value = state.playerColour.r;
   document.getElementById("greenSlider").value = state.playerColour.g;
@@ -94,19 +92,21 @@ document.getElementById("redValue").textContent = state.playerColour.r;
 document.getElementById("greenValue").textContent = state.playerColour.g;
 document.getElementById("blueValue").textContent = state.playerColour.b;
 
+//update score
+document.getElementById("score").textContent = state.score;
+
 if (state.gameOver) {
   document.getElementById("message").textContent =
     "Congrats! you won with a match of 90%!";
   document.getElementById("submit").disabled = true;
   document.getElementById("newGame").style.display = "block";
-  document.getElementById(
-    "targetColour"
-  ).textContent = `Target Colour: R:${state.targetColour.r} G:${state.targetColour.g} B:${state.targetColour.b}`;
+ 
 } else {
   document.getElementById("message").textContent =
     "Try to match the target colour!";
   document.getElementById("submit").disabled = false;
   document.getElementById("newGame").style.display = "none";
+}
 }
 
 document.addEventListener("DOMContentLoaded", () => {
