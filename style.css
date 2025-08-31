@@ -24,7 +24,7 @@ h1{
     display: flex;
     justify-content: space-between;
     margin: 20px 0;
-    gap: 120px;
+    gap: 150px;
 }
 
 .colour-box{
@@ -76,4 +76,5 @@ h1{
     font-weight: bold;
     transition: background-color 0.3s;
     cursor: pointer;
-    
+   
+}
