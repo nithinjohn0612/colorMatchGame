@@ -97,7 +97,7 @@ document.getElementById("score").textContent = state.score;
 
 if (state.gameOver) {
   document.getElementById("message").textContent =
-    "Congrats! you won with a match of 90%!";
+    "Congrats! you won with a match of 90% or more!";
   document.getElementById("submit").disabled = true;
   document.getElementById("newGame").style.display = "block";
  
